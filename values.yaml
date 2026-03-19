@@ -20,11 +20,11 @@ istio:
       - /
 resources:
   requests:
-    cpu: 100m
-    memory: 512Mi
+    cpu: 11m
+    memory: 130Mi
   limits:
     cpu: 500m
-    memory: 1024Mi
+    memory: 200Mi
 env:
   NODE_ENV: production
   NEXT_PUBLIC_API_URL: "https://dev-api.fitnest.az"
