@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: {{ include "frontend.fullname" . }}
   labels:
-    {{- include "frontend.labels" . | nindent 4}}
+    {{- include "frontend.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "frontend.selectorLabels" . | nindent 6}}
+      {{- include "frontend.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "frontend.selectorLabels" . | nindent 8}}
+        {{- include "frontend.selectorLabels" . | nindent 8 }}
     spec:
       serviceAccountName: {{ include "frontend.fullname" . }}-sa
       {{- with .Values.image.imagePullSecrets }}

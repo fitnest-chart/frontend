@@ -1,23 +1,40 @@
 replicaCount: 1
+
 image:
   repository: ghcr.io/fitnest-backend/frontend
   tag: "development-17042e2"
   pullPolicy: IfNotPresent
   imagePullSecrets:
     - name: ghcr-secret
+
 service:
   type: ClusterIP
   port: 80
   targetPort: 3000
-istio:
+
+networkPolicy:
   enabled: true
-  gateway:
-    name: public-gateway
-  virtualService:
-    hosts:
-      - "fitnest.az"
-    paths:
-      - /
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+  hosts:
+    - host: fitnest-dev.az
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - hosts:
+        - fitnest-dev.az
+      secretName: fitnest-wildcard-tls
+  backend:
+    service:
+      name: ""   # Empty means use the chart's fullname
+      port: 80
+
 resources:
   requests:
     cpu: 11m
@@ -25,6 +42,7 @@ resources:
   limits:
     cpu: 500m
     memory: 200Mi
+
 env:
   NODE_ENV: production
   NEXT_PUBLIC_API_URL: "https://dev-api.fitnest.az"
