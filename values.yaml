@@ -1,22 +1,18 @@
 # values.yaml for landing-frontend
 
 replicaCount: 1
-
 image:
   repository: ghcr.io/fitnest-code/landing-frontend
-  tag: "development-17042e2"
+  tag: "development-11bbb26"
   pullPolicy: IfNotPresent
   imagePullSecrets:
     - name: ghcr-secret
-
 service:
   type: ClusterIP
   port: 80
   targetPort: 3000
-
 networkPolicy:
   enabled: true
-
 ingress:
   enabled: true
   className: nginx
@@ -34,9 +30,8 @@ ingress:
       secretName: fitnest-wildcard-tls
   backend:
     service:
-      name: ""   # Empty means use the chart's fullname (landing-frontend)
+      name: "" # Empty means use the chart's fullname (landing-frontend)
       port: 80
-
 resources:
   requests:
     cpu: 11m
@@ -44,7 +39,6 @@ resources:
   limits:
     cpu: 500m
     memory: 200Mi
-
 env:
   NODE_ENV: production
   NEXT_PUBLIC_API_URL: "https://dev-api.fitnest.az"
