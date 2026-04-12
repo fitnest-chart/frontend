@@ -1,7 +1,9 @@
+# values.yaml for landing-frontend
+
 replicaCount: 1
 
 image:
-  repository: ghcr.io/fitnest-backend/frontend
+  repository: ghcr.io/fitnest-code/landing-frontend
   tag: "development-17042e2"
   pullPolicy: IfNotPresent
   imagePullSecrets:
@@ -32,7 +34,7 @@ ingress:
       secretName: fitnest-wildcard-tls
   backend:
     service:
-      name: ""   # Empty means use the chart's fullname
+      name: ""   # Empty means use the chart's fullname (landing-frontend)
       port: 80
 
 resources:
