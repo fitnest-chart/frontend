@@ -34,5 +34,17 @@ spec:
               value: {{ $value | quote }}
             {{- end }}
           {{- end }}
+          {{- if .Values.assetLinks.enabled }}
+          volumeMounts:
+            - name: assetlinks
+              mountPath: /app/public/.well-known/assetlinks.json
+              subPath: assetlinks.json
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      {{- if .Values.assetLinks.enabled }}
+      volumes:
+        - name: assetlinks
+          secret:
+            secretName: {{ .Values.assetLinks.secretName }}
+      {{- end }}
