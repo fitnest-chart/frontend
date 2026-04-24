@@ -41,7 +41,7 @@ resources:
     memory: 200Mi
 env:
   NODE_ENV: production
-  NEXT_PUBLIC_API_URL: "https://dev-api.fitnest.az"
+  NEXT_PUBLIC_API_URL: "https://api.fitnest.az"
 assetLinks:
   enabled: true
   secretName: assetlinks-secret
