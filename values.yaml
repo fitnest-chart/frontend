@@ -3,7 +3,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/fitnest-code/landing-frontend
-  tag: "development-a807228"
+  tag: "development-0bc3856"
   pullPolicy: IfNotPresent
   imagePullSecrets:
     - name: ghcr-secret
@@ -20,13 +20,13 @@ ingress:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
   hosts:
-    - host: fitnest.az
+    - host: dev.fitnest.az
       paths:
         - path: /
           pathType: Prefix
   tls:
     - hosts:
-        - fitnest.az
+        - dev.fitnest.az
       secretName: fitnest-wildcard-tls
   backend:
     service:
