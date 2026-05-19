@@ -26,7 +26,7 @@ ingress:
           pathType: Prefix
   tls:
     - hosts:
-        - dev.fitnest.az
+        - fitnest.az
       secretName: fitnest-wildcard-tls
   backend:
     service:
