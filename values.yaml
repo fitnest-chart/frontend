@@ -27,7 +27,7 @@ ingress:
   tls:
     - hosts:
         - fitnest.az
-      secretName: fitnest-landing-tls
+      secretName: fitnest-origin-tls
   backend:
     service:
       name: "" # Empty means use the chart's fullname (landing-frontend)
