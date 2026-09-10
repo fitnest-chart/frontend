@@ -45,7 +45,9 @@ env:
   NEXT_PUBLIC_API_BASE_URL: "/api/proxy"
 vaultEnv: development
 vault:
-  addr: "https://vault.fitnest.az"
+  # Same in-cluster HTTP Vault the backends use. Public https://vault.fitnest.az
+  # is the prod Vault TLS endpoint; Node Alpine cannot verify that cert.
+  addr: "http://vault-dev.fitnest-development.svc.cluster.local:8200"
 assetLinks:
   enabled: true
   secretName: assetlinks-secret

@@ -44,7 +44,7 @@ spec:
                   name: vault-approle-secret
                   key: secret-id
             - name: VAULT_ADDR
-              value: {{ .Values.vault.addr | default "https://vault.fitnest.az" | quote }}
+              value: {{ .Values.vault.addr | default "http://vault-dev.fitnest-development.svc.cluster.local:8200" | quote }}
             - name: VAULT_SECRET_PATH
               value: {{ printf "landing-frontend/%s" (.Values.vaultEnv | default "development") | quote }}
           {{- end }}
