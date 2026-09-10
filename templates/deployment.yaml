@@ -33,6 +33,20 @@ spec:
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
+            - name: VAULT_ROLE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: vault-approle-secret
+                  key: role-id
+            - name: VAULT_SECRET_ID
+              valueFrom:
+                secretKeyRef:
+                  name: vault-approle-secret
+                  key: secret-id
+            - name: VAULT_ADDR
+              value: {{ .Values.vault.addr | default "https://vault.fitnest.az" | quote }}
+            - name: VAULT_SECRET_PATH
+              value: {{ printf "landing-frontend/%s" (.Values.vaultEnv | default "development") | quote }}
           {{- end }}
           {{- if .Values.assetLinks.enabled }}
           volumeMounts:
